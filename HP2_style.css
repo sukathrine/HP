@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'Dunbledor 1';
+  src: url('./fonts/dum1.ttf') format('ttf'),
+}
+
+
 html, body {
     height: 100%;
     min-height: 100%;
