@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Dunbledor 1';
-  src: url('./fonts/dum1.ttf') format('ttf'),
+  src: url('./fonts/dum1.ttf') format('truetype');
 }
 
 
@@ -31,26 +31,28 @@ body {
 }
 
 h1{
-    font-size: 35pt;
+    font-size: clamp(2rem, 4vw, 2.5rem);
     font-weight:1000;
-
 }
 
 h2{
-    font-size: 30pt;
+    font-size: clamp(1.5rem, 3vw, 2rem);
     padding-top: 30px;
 }
 
 .navbar{
     background-color: rgb(244, 244, 244);
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-top: none;
-    padding-bottom: none;
+    padding: 1rem 0.5rem;
     margin: auto;
     border-radius: 20px;
     border-bottom: 5px solid rgba(0, 0, 0, 0.678);
-    width: 50%;
+    width: 90%;
+    max-width: 700px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 1rem;
+    overflow-x: auto;
 }
 
 .navdiv{
@@ -64,10 +66,13 @@ h2{
     font-family:'Dumbledor 1';
     background: none;
     border: none;
-    font-size: 28px;
+    font-size: 1.5rem;
     font-weight: bold;
     color: rgb(170, 170, 170);
     cursor: pointer;
+    padding: 0.5em 1.5em;
+    border-radius: 0.5em;
+    transition: background 0.2s;
 }
 
 .navbar button:hover,
@@ -79,13 +84,13 @@ h2{
 li {
     list-style: none;
     display: inline-block;
-    padding: 20px;
     margin: 0px;
 }
 
 .carousel-container {
   position: relative;
-  max-width: 50%;
+  width: 100%;
+  max-width: 700px;
   height: 300px;
   overflow: hidden;
   margin: auto;
@@ -102,7 +107,8 @@ li {
 
 .carousel-slide img {
   width: 100%;
-  height: 100%;
+  max-width: 700px;
+  height: 300px;
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -138,19 +144,21 @@ li {
 
 .item_grid {
     display: grid;
-    grid-template-columns: 33% 33% 33%;
-    grid-template-rows: 300px 300px;
-    padding-left: 200px;
-    padding-right: 50px;
-    padding-top: 30px; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1rem 0 1rem;
     justify-content: center;
 }
 
 .card img{
-    width: 250px;
-    height: 200px;
+    width: 280px;
+    height: 180px;
     border-radius: 10px;
     object-fit: cover;
+    display: block;
+    margin: 0 auto;
 }
 
 .card img:hover{
@@ -173,10 +181,14 @@ li {
     bottom: 0;
     transition: all 0.3s ease-in-out;
     z-index: -1;
-    
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.7);
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 .modal.open {
@@ -188,10 +200,13 @@ li {
     background-color: rgb(255, 255, 255, 0.8);
     border-radius: 10px;
     box-shadow: 0 1px 4px black;
-    padding: 15px 25px;
+    padding: 2rem;
     text-align: center;
-    width: 640px;
-    font-size: 16pt;
+    width: 90vw;
+    max-width: 640px;
+    font-size: 1.1rem;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .modal-inner h2{
@@ -224,3 +239,49 @@ li {
 .page.active {
       display: block;
     }
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Extra responsive adjustments */
+@media (max-width: 900px) {
+  .item_grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .card img {
+    width: 220px;
+    height: 140px;
+  }
+  .carousel-slide img {
+    height: 200px;
+  }
+}
+@media (max-width: 600px) {
+  html {
+    font-size: 14px;
+  }
+  .item_grid {
+    padding-left: 0;
+    padding-right: 0;
+    gap: 1rem;
+  }
+  .card {
+    max-width: 98vw;
+  }
+  .card img {
+    width: 98vw;
+    max-width: 98vw;
+    height: 120px;
+  }
+  .carousel-container, .carousel-slide img {
+    max-width: 100vw;
+    height: 120px;
+  }
+  .modal-inner {
+    padding: 1rem;
+  }
+}
